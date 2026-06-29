@@ -1,6 +1,6 @@
-# Encrypt App
+# Aegis Vault
 
-Encrypt App 是一个用 Rust 编写的桌面加密保险箱应用，用来把文件或文件夹导入到加密仓库中，并在需要时再安全导出。
+Aegis Vault 是一个用 Rust 编写的桌面加密保险箱应用，用来把文件或文件夹导入到加密仓库中，并在需要时再安全导出。
 
 ## 核心能力
 
@@ -34,6 +34,46 @@ cargo run -p desktop-app
 ```bash
 cargo test
 ```
+
+## Windows 首版打包
+
+当前的 Windows 首版发布形式是便携版 zip。
+
+在项目根目录执行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\package-windows.ps1
+```
+
+脚本会自动完成这些事情：
+
+- 用 release 模式构建桌面应用
+- 生成 `dist/windows/Aegis-Vault-v<version>-win64/`
+- 复制可执行文件和发布说明
+- 生成 `SHA256SUMS.txt`
+- 在同目录生成可分发的 `.zip`
+
+## Windows 安装器打包
+
+在保留便携版 zip 的同时，也可以生成 Inno Setup 安装器。
+
+前提：
+
+- 已安装 Inno Setup 6
+- `ISCC.exe` 在默认安装路径，或通过环境变量 `INNO_SETUP_COMPILER` 指向编译器
+
+在项目根目录执行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\package-installer.ps1
+```
+
+脚本会自动完成这些事情：
+
+- 先执行便携版打包，确保安装器输入目录最新
+- 使用 `packaging/windows/installer.iss` 构建安装器
+- 使用 `assets/aegis-vault.ico` 作为安装器图标
+- 在 `dist/windows/` 下生成 `Aegis-Vault-Setup-v<version>-win64.exe`
 
 ## 设计特点
 

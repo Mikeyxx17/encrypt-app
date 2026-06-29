@@ -56,10 +56,12 @@ pub(crate) fn build_vault_contents(app: &EncryptApp) -> Element<'_, Message> {
         text_input("搜索当前文件夹", &app.search_query)
             .on_input(Message::SearchChanged)
             .padding(10)
+            .style(style::text_input())
             .width(Length::Fill),
         text_input("新文件夹名称", &app.new_folder_name)
             .on_input(Message::NewFolderNameChanged)
             .padding(10)
+            .style(style::text_input())
             .width(Length::FillPortion(1)),
         button("新建文件夹")
             .on_press_maybe(
@@ -224,6 +226,7 @@ fn build_selected_panel(app: &EncryptApp) -> Element<'_, Message> {
                 text_input("新名称", &app.rename_name)
                     .on_input(Message::RenameNameChanged)
                     .padding(10)
+                    .style(style::text_input())
                     .width(Length::Fill),
                 button("重命名")
                     .on_press_maybe(
@@ -255,6 +258,7 @@ fn build_selected_panel(app: &EncryptApp) -> Element<'_, Message> {
             text_input("目标文件夹，例如 /Documents", &app.move_destination)
                 .on_input(Message::MoveDestinationChanged)
                 .padding(10)
+                .style(style::text_input())
                 .width(Length::Fill),
             button("用当前文件夹")
                 .on_press(Message::MoveDestinationChanged(app.current_dir.clone()))

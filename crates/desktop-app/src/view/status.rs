@@ -17,6 +17,6 @@ pub(crate) fn build_status_bar(app: &EncryptApp) -> Element<'_, Message> {
     .width(Length::Fill)
     .height(Length::Fixed(48.0))
     .padding(12)
-    .style(style::card())
+    .style(style::status_bar())
     .into()
 }

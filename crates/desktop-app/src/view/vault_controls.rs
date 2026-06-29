@@ -14,6 +14,7 @@ pub(crate) fn build_vault_controls(app: &EncryptApp) -> Element<'_, Message> {
         text_input("保险库文件夹，例如 D:\\Vaults\\MyVault", &app.vault_path)
             .on_input(Message::VaultPathChanged)
             .padding(10)
+            .style(style::text_input())
             .width(Length::Fill),
         button("选择")
             .on_press_maybe((!app.busy).then_some(Message::PickVaultFolder))
@@ -25,16 +26,17 @@ pub(crate) fn build_vault_controls(app: &EncryptApp) -> Element<'_, Message> {
         .secure(true)
         .on_input(Message::PasswordChanged)
         .padding(10)
+        .style(style::text_input())
         .width(Length::Fill);
 
-    let action_row = row![
-        button("新建")
+    let primary_actions = row![
+        button("新建保险库")
             .on_press_maybe(can_create_or_open(app).then_some(Message::CreateVault))
             .style(style::primary_button()),
-        button("打开")
+        button("打开保险库")
             .on_press_maybe(can_create_or_open(app).then_some(Message::OpenVault))
             .style(style::primary_button()),
-        button("检查")
+        button("健康检查")
             .on_press_maybe(
                 (!app.busy
                     && (app.handle.is_some()
@@ -42,6 +44,10 @@ pub(crate) fn build_vault_controls(app: &EncryptApp) -> Element<'_, Message> {
                 .then_some(Message::HealthCheck),
             )
             .style(style::secondary_button()),
+    ]
+    .spacing(8);
+
+    let secondary_actions = row![
         button("锁定")
             .on_press_maybe(app.handle.is_some().then_some(Message::LockVault))
             .style(style::secondary_button()),
@@ -58,7 +64,8 @@ pub(crate) fn build_vault_controls(app: &EncryptApp) -> Element<'_, Message> {
         text("保险库").size(20).color(style::TEXT_PRIMARY),
         path_row,
         password_input,
-        action_row,
+        primary_actions,
+        secondary_actions,
     ]
     .spacing(12)
     .padding(18);
@@ -70,16 +77,19 @@ pub(crate) fn build_vault_controls(app: &EncryptApp) -> Element<'_, Message> {
                 .secure(true)
                 .on_input(Message::OldPasswordChanged)
                 .padding(10)
+                .style(style::text_input())
                 .width(Length::Fill),
             text_input("新密码", &app.new_password)
                 .secure(true)
                 .on_input(Message::NewPasswordChanged)
                 .padding(10)
+                .style(style::text_input())
                 .width(Length::Fill),
             text_input("确认新密码", &app.new_password_confirm)
                 .secure(true)
                 .on_input(Message::NewPasswordConfirmChanged)
                 .padding(10)
+                .style(style::text_input())
                 .width(Length::Fill),
             row![
                 button("确认修改")

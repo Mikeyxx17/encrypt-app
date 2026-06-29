@@ -26,8 +26,8 @@ pub(crate) fn view(app: &EncryptApp) -> Element<'_, Message> {
     let workspace = responsive(move |size| build_workspace(app, size.width < 980.0));
 
     let shell = column![workspace, build_status_bar(app)]
-        .spacing(12)
-        .padding(18)
+        .spacing(14)
+        .padding(20)
         .width(Length::Fill)
         .height(Length::Fill);
 
@@ -55,11 +55,11 @@ fn build_workspace(app: &EncryptApp, compact: bool) -> Element<'_, Message> {
 
     row![
         container(left_panel)
-            .width(Length::FillPortion(4))
-            .max_width(470.0),
-        container(right_panel).width(Length::FillPortion(7)),
+            .width(Length::FillPortion(5))
+            .max_width(540.0),
+        container(right_panel).width(Length::FillPortion(8)),
     ]
-    .spacing(16)
+    .spacing(18)
     .width(Length::Fill)
     .height(Length::Fill)
     .into()
@@ -72,7 +72,7 @@ fn build_left_panel(app: &EncryptApp) -> Element<'_, Message> {
         build_file_controls(app),
         build_vault_management(app),
     ]
-    .spacing(14)
+    .spacing(16)
     .width(Length::Fill);
 
     let left_panel = scrollable(left_content)
@@ -88,7 +88,7 @@ fn build_right_panel(app: &EncryptApp) -> Element<'_, Message> {
         build_health_panel(app),
         build_progress(app)
     ]
-    .spacing(14)
+    .spacing(16)
     .width(Length::Fill);
 
     let right_panel = scrollable(right_content)

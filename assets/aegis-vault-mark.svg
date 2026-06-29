@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Aegis Vault mark</title>
+  <desc id="desc">A shield with a vault dial and keyhole.</desc>
+  <path fill="#0F2433" d="M128 18 226 58v68c0 56-34 96-98 116C64 222 30 182 30 126V58l98-40Z"/>
+  <path fill="#167E78" d="M128 18v224C64 222 30 182 30 126V58l98-40Z"/>
+  <path fill="#F8FBFA" d="M128 40 207 72v56c0 45-27 78-79 96-52-18-79-51-79-96V72l79-32Z"/>
+  <path fill="#0F2433" d="M128 55 194 82v46c0 36-21 63-66 80-45-17-66-44-66-80V82l66-27Z"/>
+  <path fill="#167E78" d="M128 55v153c-45-17-66-44-66-80V82l66-27Z"/>
+  <circle cx="128" cy="132" r="66" fill="#F8FBFA"/>
+  <circle cx="128" cy="132" r="52" fill="none" stroke="#0F2433" stroke-width="13"/>
+  <path fill="#0F2433" d="M128 121a18 18 0 0 1 11 32l8 34h-38l8-34a18 18 0 0 1 11-32Z"/>
+  <path stroke="#167E78" stroke-linecap="round" stroke-width="9" d="M128 72v19M128 173v19M68 132h19M169 132h19"/>
+  <path fill="#E48B2C" d="M128 55 166 82H90l38-27Z"/>
+</svg>

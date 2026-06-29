@@ -14,6 +14,7 @@ pub(crate) fn build_file_controls(app: &EncryptApp) -> Element<'_, Message> {
         text_input("要加密导入的文件或文件夹", &app.import_path)
             .on_input(Message::ImportPathChanged)
             .padding(10)
+            .style(style::text_input())
             .width(Length::Fill),
         button("文件")
             .on_press_maybe((app.handle.is_some() && !app.busy).then_some(Message::PickImportFile),)
@@ -33,6 +34,7 @@ pub(crate) fn build_file_controls(app: &EncryptApp) -> Element<'_, Message> {
         )
         .on_input(Message::ExportPathChanged)
         .padding(10)
+        .style(style::text_input())
         .width(Length::Fill),
         button("选择")
             .on_press_maybe(
@@ -42,7 +44,7 @@ pub(crate) fn build_file_controls(app: &EncryptApp) -> Element<'_, Message> {
     ]
     .spacing(8);
 
-    let actions = row![
+    let policy_actions = row![
         button(text(format!(
             "同名：{}",
             import_conflict_policy_label(app.import_conflict_policy)
@@ -55,6 +57,10 @@ pub(crate) fn build_file_controls(app: &EncryptApp) -> Element<'_, Message> {
         )))
         .on_press_maybe((!app.busy).then_some(Message::CycleFailurePolicy))
         .style(style::secondary_button()),
+    ]
+    .spacing(8);
+
+    let run_actions = row![
         button("导入加密")
             .on_press_maybe(
                 (app.handle.is_some() && !app.busy && !app.import_path.trim().is_empty())
@@ -76,7 +82,8 @@ pub(crate) fn build_file_controls(app: &EncryptApp) -> Element<'_, Message> {
         import_path_row,
         text("导出").size(15).color(style::INFO),
         export_path_row,
-        actions,
+        policy_actions,
+        run_actions,
     ]
     .spacing(10)
     .padding(18);
