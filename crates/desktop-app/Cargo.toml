@@ -1,0 +1,19 @@
+[package]
+name = "desktop-app"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+[[bin]]
+name = "encrypt-app"
+path = "src/main.rs"
+
+[dependencies]
+chrono.workspace = true
+iced.workspace = true
+rfd.workspace = true
+secrecy.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tokio.workspace = true
+vault-core = { path = "../vault-core" }

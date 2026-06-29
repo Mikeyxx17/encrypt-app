@@ -1,0 +1,24 @@
+[package]
+name = "vault-core"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+[dependencies]
+argon2.workspace = true
+base64.workspace = true
+chacha20poly1305.workspace = true
+chrono.workspace = true
+fs2.workspace = true
+hex.workspace = true
+rand.workspace = true
+secrecy.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+thiserror.workspace = true
+walkdir.workspace = true
+zeroize.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
